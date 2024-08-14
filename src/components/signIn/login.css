@@ -1,0 +1,62 @@
+.signIn-main{
+  background-image: url("../../assests/image1.5.webp");
+  height: 800px;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  padding:10rem;
+}
+.addUser {
+    /* background-color:#fff; */
+    background-image: url("../../assests/test4.png");
+    background-position: center;
+    background-size: cover;
+    width:40%;
+    margin: 20px auto;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.065);  
+  }
+  .addUserForm .inputGroup {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .addUserForm .inputGroup label {
+    margin-top: 10px;
+  }
+  
+  .addUserForm .inputGroup input {
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .inputGroup button {
+    margin-top: 10px;
+  }
+  /* .login {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .login .btn.btn-success {
+    width: 50%;
+  }
+   */
+  .addUser h3 {
+    text-align: center;
+    font-weight: bold;
+    /* color: darkcyan; */
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  }
+  .login-link{
+    color:black;
+    font-weight: 600;
+  }
+  .login_btn{
+    margin-left: 120px;
+  }
