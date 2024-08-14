@@ -42,9 +42,9 @@ const Signup = () => {
     })
   }
   return (
-     <div className="signup-main">   
+     <div className="signup-main" >   
    <section className="container w-50 text-light p-2">
-    <form className="row g-3 p-3 signup-form">
+    <form className="row g-3 p-3 signup-form" >
     <h4 className="text-center text-white">Sign Up</h4>
         <div className="col-md-6">
             <label htmlFor="fullname" className="form-label text-white">Full Name</label>
@@ -121,7 +121,7 @@ const Signup = () => {
           </div>
         </div>
         <div className="col-12 mt-2">
-          <button type="submit" className="btn btn-primary register">Register</button>
+          <button type="submit" className="btn btn-primary register" onClick={addUser}>Register</button>
         </div>
         <div className="col-12 text-center">
         <span className="text-white">Already have an Account? </span>
