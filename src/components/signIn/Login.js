@@ -1,19 +1,60 @@
 import React, { useState } from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
+  
+  var ucourses = [{ id: 1, description: "Cutomer" },
+    { id: 2, description: "Trainer" }]
 
-const[email,setEmail]=useState("");
-const [password,setPassword]=useState("");
-const handleSubmit=(e)=>{
-  e.preventDefault();
-  setEmail("");
-  setPassword("");
+const nav= useNavigate();
+const[item,setItem]=useState({
+    email:" ",
+    password:" "
+});
 
-  localStorage.setItem("email",email)
-  localStorage.setItem("password",password);
+const inputchangehandler = (event) => {
+  const { type, name, value } = event.target;
+  setItem({ ...item, [name]: value })
 }
+
+
+
+const addDetails=(event)=>{
+  console.log(item);
+    event.preventDefault();           //to prevent page loading
+     console.log(item);
+    axios.post(`http://localhost:8080/gymservices/users/login`,item).then((res)=>{
+        // window.alert("details added successfully");
+        // nav("/homepage1");
+       // console.log(item.password);
+       // const token= res.data;
+       // console.log(res.data);
+       // localStorage.setItem("token",res.data.token);
+        //setAuthToken(token);
+        // if(selectedOption=="Customer") {
+           nav("/");
+        // }
+        // else if(selectedOption=="Vendor"){
+        //  // nav("/homepage2");
+        // }
+        // else{
+        //   //nav("/admin");
+        // }
+        
+    }).catch((err)=>{})
+}
+// const handleSubmit=(e)=>{
+//   e.preventDefault();
+//   setEmail("");
+//   setPassword("");
+
+//   localStorage.setItem("email",email)
+//   localStorage.setItem("password",password);
+// }
   return (
     <>
     <div className="container-fluid signIn-main">
@@ -23,27 +64,39 @@ const handleSubmit=(e)=>{
       <h3>Sign in</h3>
       <form className="addUserForm">
         <div className="inputGroup">
-          <label htmlFor="email" className="text-white">Email:</label>
+          <label>Email:</label>
           <input
             type="email"
             id="email"
             name="email"
             autoComplete="off"
             placeholder="Enter your Email"
-            value={email}
-            onChange={e=>setEmail(e.target.value)}
+            onChange={inputchangehandler} value={item.email}
           />
-          <label htmlFor="Password" className="text-white">Password:</label>
+          <label >Password:</label>
           <input
             type="password"
             id="password"
             name="password"
             autoComplete="off"
             placeholder="Enter your Password"
-            value={password}
-            onChange={e=>setPassword(e.target.value)}
+            onChange={inputchangehandler} value={item.password}
           />
-          <button type="submit" class="btn btn-primary mt-4 w-50 login_btn" onClick={handleSubmit}>
+
+<div className="col-md-4">
+          <label for="inputState" className="form-label">Role</label>
+          <select id="inputState" name="roleId" className="form-select"  onChange={inputchangehandler}>
+          <option >Select Your role</option>
+          {
+                  ucourses.map((val, index) => {
+                    return <option key={index} value={val.id} >{val.description}</option>
+                  })
+                }
+          </select>
+        </div>
+
+
+          <button type="submit" class="btn btn-primary mt-4" onSubmit={addDetails} >
             Login
           </button>
         </div>
@@ -61,7 +114,8 @@ const handleSubmit=(e)=>{
     </div>
     </div>
     </div>
-       </>
+    
+    </>
   );
 };
 
